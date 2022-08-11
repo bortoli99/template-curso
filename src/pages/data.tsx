@@ -3,12 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Alert, Card, Form } from "react-bootstrap";
+var ethiopianDate = require('ethiopian-date');
 
 export default function Teste() {
 
     const [data, setData] = useState('');
     const [juliana, setJuliana] = useState('');
 
+
+    function dataEthiopian(){
+        let date: Date = new Date(data);
+        let arrayDate = ethiopianDate.toEthiopian(date.getFullYear(), date.getMonth(), date.getDay());
+        return arrayDate[0] + "/" + arrayDate[1] + "/" + arrayDate[2];
+    }
 
     function dataSelina() {
         let date: Date = new Date(data);
@@ -57,6 +64,9 @@ export default function Teste() {
                                 <Row>
                                     <Col>
                                         <Alert variant="success">Valor em data Juliana é : {dataSelina()}</Alert>
+                                    </Col>
+                                    <Col>
+                                        <Alert variant="success">Valor em data Entíope é : {dataEthiopian()}</Alert>
                                     </Col>
                                 </Row>
                             ) : (<></>)}
